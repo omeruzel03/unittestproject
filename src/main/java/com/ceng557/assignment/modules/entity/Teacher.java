@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,4 +31,16 @@ public class Teacher {
     @Column(name = "active")
     private Boolean active;
 
+    @OneToMany(mappedBy = "lecture")
+    private List<TeacherLecture> teacherLectures;
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", active=" + active + "}";
+    }
 }
