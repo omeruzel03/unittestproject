@@ -72,6 +72,7 @@ public class StudentLectureServiceImpl implements StudentLectureService {
     }
 
     @Override
+    @Transactional
     public void delete(StudentLecture studentLecture) {
         if (studentLecture != null)
             studentLectureRepository.delete(studentLecture);

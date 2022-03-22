@@ -48,12 +48,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         studentRepository.deleteById(id);
     }
 
 
     @Override
+    @Transactional
     public void delete(Student student) {
         studentRepository.delete(student);
     }

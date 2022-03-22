@@ -34,6 +34,7 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
+    @Transactional
     public boolean save(Lecture lecture) {
         lectureRepository.save(lecture);
         return true;
@@ -55,6 +56,7 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         lectureRepository.deleteById(id);
     }

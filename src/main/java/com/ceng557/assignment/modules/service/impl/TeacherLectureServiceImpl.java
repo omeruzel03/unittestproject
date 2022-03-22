@@ -44,17 +44,20 @@ public class TeacherLectureServiceImpl implements TeacherLectureService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         teacherLectureRepository.deleteById(id);
     }
 
 
     @Override
+    @Transactional
     public void deleteByTeacherNumber(String teacherNumber) {
         teacherLectureRepository.deleteTeacherLectureByTeacherNumber(teacherNumber);
     }
 
     @Override
+    @Transactional
     public void delete(TeacherLecture teacherLecture) {
         teacherLectureRepository.delete(teacherLecture);
     }
