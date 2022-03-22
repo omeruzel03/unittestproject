@@ -1,6 +1,7 @@
 package com.ceng557.assignment.modules.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "teacher_lecture", schema = "assignment")
 public class TeacherLecture {
 
@@ -31,6 +33,11 @@ public class TeacherLecture {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lecture_id")
     private Lecture lecture;
+
+    public TeacherLecture(Teacher teacher, Lecture lecture) {
+        this.teacher = teacher;
+        this.lecture = lecture;
+    }
 
     @Override
     public boolean equals(Object o) {

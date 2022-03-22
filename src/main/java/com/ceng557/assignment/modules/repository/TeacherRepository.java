@@ -14,4 +14,6 @@ public interface TeacherRepository extends CrudRepository<Teacher, Long> {
             "LEFT JOIN FETCH tl.lecture l " +
             "WHERE t.number = :teacherNumber")
     Teacher getTeacherAndLecturesByNumber(String teacherNumber);
+
+    Teacher getTeacherByNumber(String number);
 }

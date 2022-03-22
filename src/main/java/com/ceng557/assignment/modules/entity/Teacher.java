@@ -1,6 +1,7 @@
 package com.ceng557.assignment.modules.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "teacher", schema = "assignment")
 public class Teacher {
 
@@ -33,6 +35,13 @@ public class Teacher {
 
     @OneToMany(mappedBy = "lecture")
     private List<TeacherLecture> teacherLectures;
+
+    public Teacher(String number, String name, String surname) {
+        this.number = number;
+        this.name = name;
+        this.surname = surname;
+        this.active = Boolean.TRUE;
+    }
 
     @Override
     public String toString() {

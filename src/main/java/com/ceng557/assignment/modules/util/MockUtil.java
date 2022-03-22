@@ -1,7 +1,9 @@
 package com.ceng557.assignment.modules.util;
 
 
+import com.ceng557.assignment.modules.entity.Lecture;
 import com.ceng557.assignment.modules.entity.Student;
+import com.ceng557.assignment.modules.entity.Teacher;
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +30,20 @@ public class MockUtil {
             students.add(generateStudent());
         }
         return students;
+    }
+
+    public Teacher generateTeacher() {
+        return new Teacher(
+                faker.numerify("900100###"),
+                faker.name().firstName(),
+                faker.name().lastName()
+        );
+    }
+
+    public Lecture generateLecture() {
+        return new Lecture(
+                faker.numerify("CENG6##"),
+                faker.educator().course()
+        );
     }
 }

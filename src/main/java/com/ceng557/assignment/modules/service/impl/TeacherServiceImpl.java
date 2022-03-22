@@ -20,4 +20,25 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher getTeacherAndLecturesByNumber(String teacherNumber) {
         return teacherRepository.getTeacherAndLecturesByNumber(teacherNumber);
     }
+
+    @Override
+    public boolean save(Teacher teacher) {
+        if (teacher.getId() == null) {
+            teacherRepository.save(teacher);
+            return true;
+        } else {
+            Teacher saved = teacherRepository.save(teacher);
+            return saved.getId().equals(teacher.getId());
+        }
+    }
+
+    @Override
+    public Teacher getByNumber(String number) {
+        return teacherRepository.getTeacherByNumber(number);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        teacherRepository.deleteById(id);
+    }
 }

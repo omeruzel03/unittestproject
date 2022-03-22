@@ -53,4 +53,9 @@ public class LectureServiceImpl implements LectureService {
     public List<Lecture> getTeacherLecturesByTeacherNumber(String teacherNumber) {
         return lectureRepository.getTeacherLecturesByTeacherNumber(teacherNumber);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        lectureRepository.deleteById(id);
+    }
 }

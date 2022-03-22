@@ -72,7 +72,7 @@ public class TestJUnit1 {
 
     @Test
     public void test2StudentCount() {
-        int STUDENT_COUNT = 20;
+        int STUDENT_COUNT = 5;
 
         mockUtil.generateStudent(STUDENT_COUNT).forEach((s) -> {
             Assert.assertTrue(studentService.save(s));
