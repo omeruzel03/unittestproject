@@ -13,14 +13,14 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository){
+    public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
     @Override
     public boolean existStudentByNumber(String number) {
         int count = studentRepository.countByNumber(number);
-        if(count > 0){
+        if (count > 0) {
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     public boolean save(Student student) {
         boolean existStudent = existStudentByNumber(student.getNumber());
-        if(existStudent){
+        if (existStudent) {
             return false;
         }
         studentRepository.save(student);
@@ -53,4 +53,10 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.deleteById(id);
     }
 
+
+    @Override
+    @Transactional
+    public void delete(Student student) {
+        studentRepository.delete(student);
+    }
 }
