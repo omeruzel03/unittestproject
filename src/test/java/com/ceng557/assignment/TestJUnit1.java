@@ -35,20 +35,29 @@ public class TestJUnit1 {
 
     private List<Student> savedStudents;
 
+    /**
+     * Fields are instantiated
+     */
     @Before
     public void setup() {
         savedStudents = new ArrayList<>();
     }
 
+    /**
+     * Database rollback operations are handled in this method.
+     */
     @After
     public void tearDown() {
-        try {
-            savedStudents.forEach(studentService::delete);
-        } catch (Exception e) {
-        }
+        savedStudents.forEach((it) -> {
+            if (it != null && it.getId() != null)
+                studentService.delete(it);
+        });
     }
 
-
+    /**
+     * The student can be inserted to the database if it has a unique number.
+     * If the number is not unique, studentService.save(Student) will return false.
+     */
     @Test
     public void test1InsertStudent() {
         Student student = new Student("202070001", "Ahmet", "Veli", Boolean.FALSE);
@@ -70,6 +79,10 @@ public class TestJUnit1 {
         savedStudents.add(student);
     }
 
+    /**
+     * Student service has a method to get all the students in the database.
+     * We can compare the returned list size to check the student count.
+     */
     @Test
     public void test2StudentCount() {
         int STUDENT_COUNT = 5;
@@ -83,6 +96,9 @@ public class TestJUnit1 {
         Assert.assertTrue(list.size() == STUDENT_COUNT);
     }
 
+    /**
+     * We can update the student's number with a new number.
+     */
     @Test
     public void test3UpdateStudent() {
         String STUDENT_NUMBER = "202070002";
@@ -107,6 +123,9 @@ public class TestJUnit1 {
         Assert.assertNotNull(currentStudent);
     }
 
+    /**
+     * We can delete the student from the database.
+     */
     @Test
     public void test4DeleteStudent() {
         Student student = mockUtil.generateStudent();
