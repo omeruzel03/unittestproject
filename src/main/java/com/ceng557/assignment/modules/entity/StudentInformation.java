@@ -21,6 +21,9 @@ public class StudentInformation {
     @Column(name = "department_id")
     private Long departmentId;
 
+    @Column(name = "student_id")
+    private Long studentId;
+
     @Column(name = "record_date")
     private Date recordDate;
 

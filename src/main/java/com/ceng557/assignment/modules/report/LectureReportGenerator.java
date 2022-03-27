@@ -3,20 +3,16 @@ package com.ceng557.assignment.modules.report;
 import com.ceng557.assignment.modules.entity.Lecture;
 import com.ceng557.assignment.modules.entity.Student;
 import com.ceng557.assignment.modules.entity.StudentLecture;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@RequiredArgsConstructor
 public class LectureReportGenerator implements ReportGenerator<String> {
     private final Lecture lecture;
     private List<Student> passStudents;
     private List<Student> failStudents;
-
-
-    public LectureReportGenerator(Lecture lecture) {
-        this.lecture = lecture;
-    }
 
     private void setup() {
         passStudents = lecture

@@ -1,17 +1,10 @@
 package com.ceng557.assignment;
 
-import com.ceng557.assignment.modules.entity.Lecture;
 import com.ceng557.assignment.modules.entity.Student;
-import com.ceng557.assignment.modules.service.LectureService;
-import com.ceng557.assignment.modules.service.StudentLectureService;
 import com.ceng557.assignment.modules.service.StudentService;
 import com.ceng557.assignment.modules.util.MockUtil;
-import org.hibernate.annotations.common.util.impl.Log;
 import org.junit.*;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -20,7 +13,6 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource(locations = "classpath:application-test.properties")
