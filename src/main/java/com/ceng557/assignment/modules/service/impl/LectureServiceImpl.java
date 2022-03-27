@@ -3,25 +3,20 @@ package com.ceng557.assignment.modules.service.impl;
 import com.ceng557.assignment.modules.entity.Lecture;
 import com.ceng557.assignment.modules.repository.LectureRepository;
 import com.ceng557.assignment.modules.service.LectureService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class LectureServiceImpl implements LectureService {
 
     private final LectureRepository lectureRepository;
 
     private final EntityManager entityManager;
-
-    public LectureServiceImpl(LectureRepository lectureRepository, EntityManager entityManager) {
-        this.lectureRepository = lectureRepository;
-        this.entityManager = entityManager;
-    }
 
     @Override
     public List<Lecture> getLectureList() {

@@ -3,19 +3,17 @@ package com.ceng557.assignment.modules.service.impl;
 import com.ceng557.assignment.modules.entity.Student;
 import com.ceng557.assignment.modules.repository.StudentRepository;
 import com.ceng557.assignment.modules.service.StudentService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-
-    public StudentServiceImpl(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
 
     @Override
     public boolean existStudentByNumber(String number) {

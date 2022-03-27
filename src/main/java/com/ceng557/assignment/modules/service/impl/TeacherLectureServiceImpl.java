@@ -7,21 +7,19 @@ import com.ceng557.assignment.modules.repository.LectureRepository;
 import com.ceng557.assignment.modules.repository.TeacherLectureRepository;
 import com.ceng557.assignment.modules.repository.TeacherRepository;
 import com.ceng557.assignment.modules.service.TeacherLectureService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@AllArgsConstructor
 public class TeacherLectureServiceImpl implements TeacherLectureService {
-    @Autowired
-    private TeacherLectureRepository teacherLectureRepository;
 
-    @Autowired
-    private LectureRepository lectureRepository;
+    private final TeacherLectureRepository teacherLectureRepository;
 
-    @Autowired
-    private TeacherRepository teacherRepository;
+    private final LectureRepository lectureRepository;
 
+    private final TeacherRepository teacherRepository;
 
     @Override
     @Transactional
