@@ -37,12 +37,22 @@ public class TestJUnitParameterized {
     private final String teacherNumber;
     private final String[] lectureCodes;
 
-
+    /**
+     * Constructor method for the parameterized test. This constructor is used in testCases method below.
+     *
+     * @param teacherNumber is the number of the teacher saved in the database.
+     * @param lectureCodes  is the String array of lecture codes that we believe is correct. The array must be ordered lexicographically.
+     */
     public TestJUnitParameterized(String teacherNumber, String[] lectureCodes) {
         this.teacherNumber = teacherNumber.trim();
         this.lectureCodes = lectureCodes;
     }
 
+    /**
+     * Method to create tests cases
+     *
+     * @return the object array to be used in class constructor.
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> testCases() {
         return Arrays.asList(new Object[][]{
@@ -58,6 +68,11 @@ public class TestJUnitParameterized {
         });
     }
 
+    /**
+     * Test method for the parameterized test class.
+     * LectureService returns an array of lecture codes of the teacher in lexicographic order.
+     * This method compares the returned array and the passed array in the constructor.
+     */
     @Test
     public void testTeacherLectures() {
         List<String> lectureCodeList = lectureService

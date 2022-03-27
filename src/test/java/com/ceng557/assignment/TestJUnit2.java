@@ -39,12 +39,18 @@ public class TestJUnit2 {
     private List<Student> savedStudents = new ArrayList<>();
     private List<StudentLecture> savedStudentLectures = new ArrayList<>();
 
+    /**
+     * Fields are instantiated
+     */
     @Before
     public void setup() {
         savedStudents = new ArrayList<>();
         savedStudentLectures = new ArrayList<>();
     }
 
+    /**
+     * Database rollback operations are handled in this method.
+     */
     @After
     public void tearDown() {
         cleanUpStudentLectures();
@@ -63,9 +69,12 @@ public class TestJUnit2 {
         }
     }
 
+    /**
+     * This method tests if a student can be registered to a lecture.
+     * LectureService's getLectureWithStudentsByCode returns all students registered to the lecture.
+     */
     @Test
-    // Tests a student can be registered to an existing lecture
-    public void studentCanRegisterCourse() {
+    public void studentCanRegisterToLecture() {
         // SETUP
         Student s = mockUtil.generateStudent();
         Assert.assertNull(s.getId());
@@ -86,8 +95,12 @@ public class TestJUnit2 {
         Assert.assertTrue(dbL.isStudentRegistered(s));
     }
 
+    /**
+     * This method tests if a student can drop the lecture.
+     * LectureService's getLectureWithStudentsByCode returns all students registered to the lecture.
+     */
     @Test
-    public void studentCanDropCourse() {
+    public void studentCanDropLecture() {
         //SETUP
         String lectureCode = "CENG503";
         Student s = mockUtil.generateStudent();
@@ -105,8 +118,11 @@ public class TestJUnit2 {
         Assert.assertFalse(l.isStudentRegistered(s));
     }
 
+    /**
+     * This method tests a student cannot register to the lecture if its quota is full.
+     * The program must throw an exception.
+     */
     @Test
-    // The StudentLectureService must throw exception if lecture is out of quota.
     public void fullLectureThrowsOutOfQuotaException() {
         // SETUP
         Lecture l = lectureService.getLectureByCode("CENG502");

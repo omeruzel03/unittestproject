@@ -42,6 +42,9 @@ public class TestJUnit3 {
     @Autowired
     private MockUtil mockUtil;
 
+    /**
+     * Fields are instantiated
+     */
     @Before
     public void setup() {
         savedTeachers = new ArrayList<>();
@@ -49,6 +52,9 @@ public class TestJUnit3 {
         savedLectures = new ArrayList<>();
     }
 
+    /**
+     * Database rollback operations are handled in this method.
+     */
     @After
     public void teardown() {
         savedTeacherLectures.forEach(teacherLectureService::delete);
@@ -66,6 +72,9 @@ public class TestJUnit3 {
                 });
     }
 
+    /**
+     * This method tests if we can update a teacher entity.
+     */
     @Test
     public void updateTeacher() {
         Teacher t = mockUtil.generateTeacher();
@@ -83,8 +92,13 @@ public class TestJUnit3 {
         Assert.assertTrue(t.getActive());
     }
 
+    /**
+     * The teacher entity has an active field which represents his/her current availability to give a lecture.
+     * This method tests if the teacher is not active right now, then he/she cannot give a lecture.
+     * The TeacherLecture service has a isTeacherAssignedToLecture method that returns true if the teacher is giving the lecture.
+     */
     @Test
-    public void onlyActiveTeacherCanGiveCourse() {
+    public void onlyActiveTeacherCanGiveLecture() {
         Lecture l = mockUtil.generateLecture();
         Assert.assertTrue(lectureService.save(l));
         savedLectures.add(l);
