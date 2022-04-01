@@ -122,7 +122,7 @@ public class TestJUnit2 {
      * This method tests a student cannot register to the lecture if its quota is full.
      * The program must throw an exception.
      */
-    @Test
+    @Test(expected = QuotaFullException.class)
     public void fullLectureThrowsOutOfQuotaException() {
         // SETUP
         Lecture l = lectureService.getLectureByCode("CENG502");
@@ -139,16 +139,9 @@ public class TestJUnit2 {
         if (studentService.save(s2))
             savedStudents.add(s2);
 
-
-        try {
-            StudentLecture sl1 = studentLectureService.registerStudentToLecture(s1.getNumber(), l.getCode());
-            savedStudentLectures.add(sl1);
-            StudentLecture sl2 = studentLectureService.registerStudentToLecture(s1.getNumber(), l.getCode());
-            Assert.fail("QuotaFullException must be thrown.");
-            savedStudentLectures.add(sl2);
-        } catch (QuotaFullException e) {
-            Assert.assertEquals("Quota is full for lecture " + l.getCode(), e.getMessage());
-        }
+        StudentLecture sl1 = studentLectureService.registerStudentToLecture(s1.getNumber(), l.getCode());
+        savedStudentLectures.add(sl1);
+        studentLectureService.registerStudentToLecture(s1.getNumber(), l.getCode());
     }
 
 
