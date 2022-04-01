@@ -1,5 +1,6 @@
 package com.ceng557.assignment.modules.service.impl;
 
+import com.ceng557.assignment.modules.dao.LectureDao;
 import com.ceng557.assignment.modules.entity.Lecture;
 import com.ceng557.assignment.modules.repository.LectureRepository;
 import com.ceng557.assignment.modules.service.LectureService;
@@ -7,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
@@ -16,7 +16,7 @@ public class LectureServiceImpl implements LectureService {
 
     private final LectureRepository lectureRepository;
 
-    private final EntityManager entityManager;
+    private final LectureDao lectureDao;
 
     @Override
     public List<Lecture> getLectureList() {
@@ -46,8 +46,8 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public List<Lecture> getTeacherLecturesByTeacherNumber(String teacherNumber) {
-        return lectureRepository.getTeacherLecturesByTeacherNumber(teacherNumber);
+    public List<String> getTeacherLecturesByTeacherNumber(String teacherNumber) {
+        return lectureDao.getTeacherLecturesByTeacherNumber(teacherNumber);
     }
 
     @Override

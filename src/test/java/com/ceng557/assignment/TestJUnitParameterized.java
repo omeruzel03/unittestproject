@@ -1,6 +1,5 @@
 package com.ceng557.assignment;
 
-import com.ceng557.assignment.modules.entity.Lecture;
 import com.ceng557.assignment.modules.service.LectureService;
 import org.junit.Assert;
 import org.junit.ClassRule;
@@ -19,7 +18,6 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RunWith(Parameterized.class)
 @SpringBootTest
@@ -75,13 +73,11 @@ public class TestJUnitParameterized {
      */
     @Test
     public void testTeacherLectures() {
-        List<String> lectureCodeList = lectureService
-                .getTeacherLecturesByTeacherNumber(this.teacherNumber)
-                .stream().map(Lecture::getCode).collect(Collectors.toList());
+        List<String> lectureCodeList = lectureService.getTeacherLecturesByTeacherNumber(this.teacherNumber);
 
         String[] lectureCodeArr = new String[lectureCodes.length];
         lectureCodeList.toArray(lectureCodeArr);
 
-        Assert.assertArrayEquals(lectureCodes, this.lectureCodes);
+        Assert.assertArrayEquals(lectureCodeArr, this.lectureCodes);
     }
 }

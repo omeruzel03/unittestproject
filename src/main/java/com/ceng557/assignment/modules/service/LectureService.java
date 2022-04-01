@@ -16,7 +16,7 @@ public interface LectureService {
 
     Integer getRemainingQuota(String lectureCode);
 
-    List<Lecture> getTeacherLecturesByTeacherNumber(String teacherNumber);
+    List<String> getTeacherLecturesByTeacherNumber(String teacherNumber);
 
     void deleteById(Long id);
 }
